@@ -133,4 +133,7 @@ replace (
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2
 
+	github.com/tendermint/tendermint => github.com/KiFoundation/tendermint v0.34.22-0.20221227073904-fe42bc5caa52
+	github.com/cosmos/cosmos-sdk => github.com/KiFoundation/cosmos-sdk v0.45.10-0.20221227075229-c10de63bb4e0
+	github.com/cosmos/ibc-go/v3 => github.com/KiFoundation/ibc-go/v3 v3.0.0-rc2.0.20221227081238-a13e516509d2
 )

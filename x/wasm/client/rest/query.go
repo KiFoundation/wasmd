@@ -36,7 +36,7 @@ func listCodesHandlerFn(cliCtx client.Context) http.HandlerFunc {
 		}
 
 		route := fmt.Sprintf("custom/%s/%s", types.QuerierRoute, keeper.QueryListCode)
-		res, height, err := cliCtx.Query(route)
+		res, height, err := cliCtx.Query(r.Context(), route)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
@@ -60,7 +60,7 @@ func queryCodeHandlerFn(cliCtx client.Context) http.HandlerFunc {
 		}
 
 		route := fmt.Sprintf("custom/%s/%s/%d", types.QuerierRoute, keeper.QueryGetCode, codeID)
-		res, height, err := cliCtx.Query(route)
+		res, height, err := cliCtx.Query(r.Context(), route)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
@@ -88,7 +88,7 @@ func listContractsByCodeHandlerFn(cliCtx client.Context) http.HandlerFunc {
 		}
 
 		route := fmt.Sprintf("custom/%s/%s/%d", types.QuerierRoute, keeper.QueryListContractByCode, codeID)
-		res, height, err := cliCtx.Query(route)
+		res, height, err := cliCtx.Query(r.Context(), route)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
@@ -112,7 +112,7 @@ func queryContractHandlerFn(cliCtx client.Context) http.HandlerFunc {
 		}
 
 		route := fmt.Sprintf("custom/%s/%s/%s", types.QuerierRoute, keeper.QueryGetContract, addr.String())
-		res, height, err := cliCtx.Query(route)
+		res, height, err := cliCtx.Query(r.Context(), route)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
@@ -136,7 +136,7 @@ func queryContractStateAllHandlerFn(cliCtx client.Context) http.HandlerFunc {
 		}
 
 		route := fmt.Sprintf("custom/%s/%s/%s/%s", types.QuerierRoute, keeper.QueryGetContractState, addr.String(), keeper.QueryMethodContractStateAll)
-		res, height, err := cliCtx.Query(route)
+		res, height, err := cliCtx.Query(r.Context(), route)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
@@ -175,7 +175,7 @@ func queryContractStateRawHandlerFn(cliCtx client.Context) http.HandlerFunc {
 		}
 
 		route := fmt.Sprintf("custom/%s/%s/%s/%s", types.QuerierRoute, keeper.QueryGetContractState, addr.String(), keeper.QueryMethodContractStateRaw)
-		res, height, err := cliCtx.QueryWithData(route, queryData)
+		res, height, err := cliCtx.QueryWithData(r.Context(), route, queryData)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
@@ -212,7 +212,7 @@ func queryContractStateSmartHandlerFn(cliCtx client.Context) http.HandlerFunc {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
 		}
-		res, height, err := cliCtx.QueryWithData(route, queryData)
+		res, height, err := cliCtx.QueryWithData(r.Context(), route, queryData)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
@@ -238,7 +238,7 @@ func queryContractHistoryFn(cliCtx client.Context) http.HandlerFunc {
 		}
 
 		route := fmt.Sprintf("custom/%s/%s/%s", types.QuerierRoute, keeper.QueryContractHistory, addr.String())
-		res, height, err := cliCtx.Query(route)
+		res, height, err := cliCtx.Query(r.Context(), route)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
 			return
